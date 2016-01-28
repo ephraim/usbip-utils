@@ -123,7 +123,7 @@ static int refresh_exported_devices(void)
 		dev = udev_device_new_from_syspath(udev_context, path);
 
 		/* Check whether device uses usbip-host driver. */
-		if (!strcmp(udev_device_get_driver(dev),
+		if (udev_device_get_driver(dev) && !strcmp(udev_device_get_driver(dev),
 			    USBIP_HOST_DRV_NAME)) {
 			edev = usbip_exported_device_new(path);
 			if (!edev) {
